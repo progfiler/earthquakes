@@ -24,7 +24,7 @@ public class LocalizationController {
 
     @GetMapping("{id}")
     public ResponseEntity<LocalizationDTO> find(
-            @PathVariable String id;
+            @PathVariable String id
     ) {
          LocalizationDTO localizationDTO = this.service.find(id);
          if (localizationDTO == null) {
