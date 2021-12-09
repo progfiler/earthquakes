@@ -1,5 +1,6 @@
 package fr.semifir.earthquakes.services;
 
+import fr.semifir.earthquakes.dtos.earthquake.EarthquakeDTO;
 import fr.semifir.earthquakes.dtos.localization.LocalizationDTO;
 import fr.semifir.earthquakes.entities.Localization;
 import fr.semifir.earthquakes.repositories.LocalizationRepository;
@@ -13,10 +14,12 @@ public class LocalizationService {
 
     ModelMapper mapper;
     LocalizationRepository repository;
+    EarthquakeService earthquakeService;
 
-    public LocalizationService(ModelMapper mapper, LocalizationRepository repository) {
+    public LocalizationService(ModelMapper mapper, LocalizationRepository repository, EarthquakeService service) {
         this.mapper = mapper;
         this.repository = repository;
+        this.earthquakeService = service;
     }
 
     /**
@@ -26,7 +29,12 @@ public class LocalizationService {
     public List<LocalizationDTO> findAll() {
         List<Localization> localizations = this.repository.findAll();
         List<LocalizationDTO> localizationDTOList = new ArrayList<>();
-        localizations.forEach(localization -> localizationDTOList.add(mapper.map(localization, LocalizationDTO.class)));
+        localizations.forEach(localization -> {
+            LocalizationDTO localizationDTO = mapper.map(localization, LocalizationDTO.class);
+            List<EarthquakeDTO> earthquakeDTOList = earthquakeService.findByLocalization(localizationDTO.getId());
+            localizationDTO.setEarthquakes(earthquakeDTOList);
+            localizationDTOList.add(localizationDTO);
+        });
         return localizationDTOList;
     }
 

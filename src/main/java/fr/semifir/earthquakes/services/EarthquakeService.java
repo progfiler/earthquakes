@@ -77,4 +77,13 @@ public class EarthquakeService {
         Earthquake earthquake = mapper.map(earthquakeDTO, Earthquake.class);
         this.repository.delete(earthquake);
     }
+
+    public List<EarthquakeDTO> findByLocalization(String id) {
+        List<Earthquake> earthquakes = repository.findByLocalization_Id(id);
+        List<EarthquakeDTO> earthquakeDTOS = new ArrayList<>();
+        earthquakes.forEach(earthquake -> {
+            earthquakeDTOS.add(mapper.map(earthquake, EarthquakeDTO.class));
+        });
+        return  earthquakeDTOS;
+    }
 }

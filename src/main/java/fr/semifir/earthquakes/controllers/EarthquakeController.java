@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("earthquakes")
+@CrossOrigin
 public class EarthquakeController {
 
     private EarthquakeService service;
