@@ -40,7 +40,7 @@ public class LocalizationService {
         LocalizationDTO localizationDTO = null;
         if (localization.isPresent())
         {
-            localizationDTO = mapper.map(localization, LocalizationDTO.class);
+            localizationDTO = mapper.map(localization.get(), LocalizationDTO.class);
         }
         return localizationDTO;
     }
