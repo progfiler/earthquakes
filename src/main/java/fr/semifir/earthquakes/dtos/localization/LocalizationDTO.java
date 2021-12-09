@@ -1,17 +1,14 @@
-package fr.semifir.earthquakes.entities;
+package fr.semifir.earthquakes.dtos.localization;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Localization {
-    @Id
+public class LocalizationDTO {
     private String id;
     private String name;
     private String code;
