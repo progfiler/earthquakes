@@ -37,14 +37,14 @@ public class LocalizationController {
     public ResponseEntity<LocalizationDTO> save(
             @RequestBody LocalizationDTO localizationDTO) {
         LocalizationDTO localizationDTOSaved  = this.service.save(localizationDTO);
-        return ResponseEntity.ok(localizationDTO);
+        return ResponseEntity.ok(localizationDTOSaved);
     }
 
     @PutMapping
     public ResponseEntity<LocalizationDTO> update(
             @RequestBody LocalizationDTO localizationDTO) {
         LocalizationDTO localizationDTOSUpdated  = this.service.update(localizationDTO);
-        return ResponseEntity.ok(localizationDTO);
+        return ResponseEntity.ok(localizationDTOSUpdated);
     }
 
     @DeleteMapping
